@@ -47,7 +47,8 @@ if __name__ == "__main__":
 """
 
 How big does the sample need to be before it resembles the population?
-is it based on the percentage of the population?  The number of elements
-in the sample?
+is it based on the ratio of the sample size vs the population size?
+
+Is it just the number of elements in the sample?
 
 """
