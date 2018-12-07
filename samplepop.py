@@ -76,5 +76,17 @@ Try it::
 This article explains part of the issue:
 https://www.sciencebuddies.org/science-fair-projects/references/sample-size-surveys
 
+git notes
+=========
+
+::
+
+    $ git bundle create samplepop.bundle master
+    $ scp samplepop.bundle example.com:/tmp/
+    $ ssh example.com
+    $ git clone -b master /tmp/samplepop.bundle samplepop2
+    $ cd samplepop2
+
+Pretty fresh, right?
 
 """
