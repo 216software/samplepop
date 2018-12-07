@@ -79,10 +79,19 @@ https://www.sciencebuddies.org/science-fair-projects/references/sample-size-surv
 git notes
 =========
 
-::
+Make a single file (a bundle) that has the master branch::
 
     $ git bundle create samplepop.bundle master
+
+Now move the bundle to a remote box via scp or rsync or whatever other
+method you want::
+
     $ scp samplepop.bundle example.com:/tmp/
+
+    $ rsync -e ssh --verbose samplepop.bundle example.com:/tmp/samplepop.bundle
+
+Now make a new repo based on that bundle::
+
     $ ssh example.com
     $ git clone -b master /tmp/samplepop.bundle samplepop2
     $ cd samplepop2
