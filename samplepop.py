@@ -1,5 +1,39 @@
 # vim: set expandtab ts=4 sw=4 filetype=python fileencoding=utf8:
 
+"""
+
+How big does a sample need to be before it resembles the population?  is
+it based on the ratio of the sample size vs the population size?
+
+Is it just the number of elements in the sample?
+
+It seems to be that the number of elements in the sample is important,
+even if ratio of the sample to the population stays the same!
+
+In other words, say the population is 10*1000 and then sample is 100, so,
+1%.
+
+That's a crappy sample.
+
+But if the population is 1000*1000, and then sample is 1000, that's only
+0.1%, but the sample is much more accurate!
+
+Try it::
+
+    $ python3 samplepop.py 10000 100
+    xx count for an 10000-element population is 5515, so 55.15%
+    xx count for an 100-element sample is 48, so 48.00%
+
+    $ python3 samplepop.py 1000000 1000
+    xx count for an 1000000-element population is 550516, so 55.05%
+    xx count for an 1000-element sample is 542, so 54.20%
+
+`This article`_ explains part of the issue.
+
+.. _`This article`: https://www.sciencebuddies.org/science-fair-projects/references/sample-size-surveys
+
+"""
+
 import argparse
 import random
 
@@ -45,57 +79,3 @@ if __name__ == "__main__":
         100.0*sample_xx_count/float(args.sample_size)))
 
 
-"""
-
-How big does the sample need to be before it resembles the population?
-is it based on the ratio of the sample size vs the population size?
-
-Is it just the number of elements in the sample?
-
-It seems to be that the number of elements in the sample is important,
-even if ratio of the sample to the population stays the same!
-
-In other words, say the population is 10000 and then sample is 100, so,
-1%.
-
-That's a crappy sample.
-
-But if the population is 1000*1000, and then sample is 1000, that's only
-0.1%, but the sample is much more accurate!
-
-Try it::
-
-    $ python3 samplepop.py 10000 100
-    xx count for an 10000-element population is 5515, so 55.15%
-    xx count for an 100-element sample is 48, so 48.00%
-
-    $ python3 samplepop.py 1000000 1000
-    xx count for an 1000000-element population is 550516, so 55.05%
-    xx count for an 1000-element sample is 542, so 54.20%
-
-This article explains part of the issue:
-https://www.sciencebuddies.org/science-fair-projects/references/sample-size-surveys
-
-git notes
-=========
-
-Make a single file (a bundle) that has the master branch::
-
-    $ git bundle create samplepop.bundle master
-
-Now move the bundle to a remote box via scp or rsync or whatever other
-method you want::
-
-    $ scp samplepop.bundle example.com:/tmp/
-
-    $ rsync -e ssh --verbose samplepop.bundle example.com:/tmp/samplepop.bundle
-
-Now make a new repo based on that bundle::
-
-    $ ssh example.com
-    $ git clone -b master /tmp/samplepop.bundle samplepop2
-    $ cd samplepop2
-
-Pretty fresh, right?
-
-"""
