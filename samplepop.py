@@ -2,7 +2,7 @@
 
 """
 
-How big does a sample need to be before it resembles the population?  is
+How big does a sample need to be before it resembles the population?  Is
 it based on the ratio of the sample size vs the population size?
 
 Is it just the number of elements in the sample?
@@ -24,9 +24,14 @@ Try it::
     xx count for an 10000-element population is 5515, so 55.15%
     xx count for an 100-element sample is 48, so 48.00%
 
+See, population is 55.15% made up of of xx elements, but the sample was
+only 48% xx elements.  Big difference!
+
     $ python3 samplepop.py 1000000 1000
     xx count for an 1000000-element population is 550516, so 55.05%
     xx count for an 1000-element sample is 542, so 54.20%
+
+Now, the sample statistic was much closer to the population statistic.
 
 `This article`_ explains part of the issue.
 
