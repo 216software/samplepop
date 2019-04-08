@@ -21,10 +21,28 @@ def set_up_args():
         default=False,
         help="Show debugging information, default %(default)s")
 
-    ap.add_argument("XdY", default="4d6")
+    ap.add_argument("xdy", default="4d6")
     ap.add_argument("number_rolls", type=int)
 
     return ap.parse_args()
+
+def roll(s):
+
+    if "d" not in s:
+        raise ValueError("Sorry, I need a string like 1d4 or 8d8")
+
+    else:
+
+        num_dice, sides = [int(thing) for thing in s.split("d")]
+
+        log.debug("Parsed {0} into {1}d{2}.".format(s, num_dice, sides))
+
+        one_die_values = list(range(1, sides+1))
+
+        log.debug("1d{0} has these possible values: {1}.".format(
+            sides, one_die_values))
+
+        return sum(random.choice(one_die_values) for roll in range(num_dice))
 
 if __name__ == "__main__":
 
@@ -37,16 +55,14 @@ if __name__ == "__main__":
         logging.basicConfig(level=logging.INFO)
 
     rolls = collections.defaultdict(int)
-    d = list(range(1, 7))
 
     for roll_number in range(1, args.number_rolls+1):
 
-        roll = random.choice(d)
+        result = roll(args.xdy)
 
-        log.debug("Roll number {0}: {1}".format(roll_number, roll))
+        rolls[result] += 1
 
-        rolls[roll] += 1
+    for k in sorted(rolls.keys()):
 
+        print("{0}: {1}".format(k, rolls[k]))
 
-    for x in d:
-        print("{0}: {1}".format(x, rolls[x]))
