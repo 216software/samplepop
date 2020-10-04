@@ -28,6 +28,11 @@ def set_up_args():
 
 def roll(s):
 
+    """
+    >>> roll("1d4") in [1,2,3,4]
+    True
+    """
+
     if "d" not in s:
         raise ValueError("Sorry, I need a string like 1d4 or 8d8")
 
