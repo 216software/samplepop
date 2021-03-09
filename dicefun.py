@@ -9,7 +9,7 @@ import collections
 import logging
 import random
 
-log = logging.getLogger("show-entry")
+log = logging.getLogger("dicefun")
 
 def set_up_args():
 
